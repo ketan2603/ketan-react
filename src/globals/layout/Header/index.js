@@ -15,7 +15,7 @@ class MainHeader extends Component {
             alt="Mehsana 42 Gol Prajapati Samaj"
           /> */}
           <img
-            alt="સમસ્ત મારુ પ્રજાપતિ મંડળ આમદવાદ"
+            alt="સમસ્ત મારુ પ્રજાપતિ પ્રગતિ મંડળ વડોદરા"
             src={Logo}
             style={{ height: 138, width: "auto" }}
           />
