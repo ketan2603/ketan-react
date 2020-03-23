@@ -1,3 +1,4 @@
+
 import React from "react";
 import ContainerLayout from "globals/components/ContainerLayout";
 import ContainerHeader from "globals/components/ContainerHeader";
@@ -8,6 +9,12 @@ class Home extends React.Component {
       <ContainerLayout>
         <ContainerHeader title="CONTACT US" />
         <div className="home">
+        <h2>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ): 9924917390</h2>
+          <h2>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી): 90990 25985</h2>
+          <h2>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી): 9898007037</h2>
+          <h2>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ): 9924917390</h2>
+          <h2>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી): 90990 25985</h2>
+          <h2>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી): 9898007037</h2>
           <h2>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ): 9924917390</h2>
           <h2>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી): 90990 25985</h2>
           <h2>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી): 9898007037</h2>
