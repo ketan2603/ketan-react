@@ -3,8 +3,6 @@ import ContainerLayout from "globals/components/ContainerLayout";
 import { Button, Table, Collapse } from "antd";
 const { Panel } = Collapse;
 
-
-
 const columns = [
   {
     title: "પોતે",

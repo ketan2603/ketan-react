@@ -13,7 +13,7 @@ class Home extends React.Component {
       <ContainerLayout>
         <div className="home">
           <h2 style={{display:'flex',justifyContent:"center"}}>
-            સમસ્ત મારુ પ્રજાપતિ પ્રગતિ મંડળ  સમાજ આપનું હાર્દિક સ્વાગત કરે છે
+            સમસ્ત મારુ પ્રજાપતિ પ્રગતિ મંડળ આપનું હાર્દિક સ્વાગત કરે છે
           </h2>
           <Carousel autoplay>
             <div>

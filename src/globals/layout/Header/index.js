@@ -27,7 +27,7 @@ class MainHeader extends Component {
               fontSize: 60
             }}
           >
-            સમસ્ત મારુ પ્રજાપતિ મંડળ આમદવાદ
+            સમસ્ત મારુ પ્રજાપતિ પ્રગતિ મંડળ વડોદરા
           </span>
         </Header>
         <Header className="globalHeader">
