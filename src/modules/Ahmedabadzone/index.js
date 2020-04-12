@@ -5,7 +5,7 @@ const { Panel } = Collapse;
 
 const columns = [
   {
-    title: "પોતે",
+    title: "કુટુંબના મુય યિ તથા પિરવારના સયોનું નામ",
     dataIndex: "person_name",
     key: "person_name",
     render: text => text
@@ -19,6 +19,11 @@ const columns = [
     title: "ભણતર",
     dataIndex: "education",
     key: "education"
+  },
+  {
+    title: "મૂળ વતન",
+    dataIndex: "native place",
+    key: "native place"
   },
   {
     title: "લગ્ન સ્થિતિ",
@@ -126,7 +131,7 @@ export default class Ahmedabadzone extends Component {
       <ContainerLayout>
         <span>
           {cityList.map((city, index) =>
-            <Button key={index} style={{ marginRight: 10, fontSize: 20,margintop: 10 }}
+            <Button key={index} style={{ marginRight: 10, fontSize: 20, margintop: 20 }}
               type="primary" onClick={() => this.getUseDetails({ city_id: city.city_id }, city)}>
               {city.city_name}
             </Button>)}
@@ -154,7 +159,7 @@ export default class Ahmedabadzone extends Component {
           <Collapse accordion expandIconPosition={"right"} onChange={(key) => this.getFamilyData({ family_id: key })}>
             {familyList.map((familyItem, index) =>
               <Panel header={familyItem.family_name} key={familyItem.family_id} >
-                <div style={{ backgroundColor: "orange" }}>
+                <div style={{ backgroundColor: "gray" }}>
                   <Table
                     columns={columns}
                     dataSource={familyDataList}
