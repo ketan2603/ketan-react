@@ -51,8 +51,6 @@ const columns = [
     key: "address"
   }
 ];
-
-
 export default class Ahmedabadzone extends Component {
   constructor() {
     super();
@@ -82,8 +80,6 @@ export default class Ahmedabadzone extends Component {
       }).catch((error) => {
         console.error(error);
       });
-
-
   }
   getUseDetails(values, curren_City) {
     this.setState({ currenCity: curren_City })
@@ -102,10 +98,7 @@ export default class Ahmedabadzone extends Component {
       }).catch((error) => {
         console.error(error);
       });
-
-
   }
-
   getFamilyData(values) {
     return fetch('http://localhost:4444/city/getUserbyCity', {
       method: 'POST',
@@ -122,9 +115,7 @@ export default class Ahmedabadzone extends Component {
       }).catch((error) => {
         console.error(error);
       });
-
   }
-
   render() {
     const { cityList = [], familyList = [], familyDataList = [], currenCity = {} } = this.state;
     return (
@@ -135,8 +126,6 @@ export default class Ahmedabadzone extends Component {
               type="primary" onClick={() => this.getUseDetails({ city_id: city.city_id }, city)}>
               {city.city_name}
             </Button>)}
-
-
         </span>
         <div
           style={{
