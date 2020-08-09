@@ -46,7 +46,7 @@ class MainMenu extends Component {
         </Menu.Item>
         <Menu.Item key="setting:9">
         <Link to="/gallery">
-        <span className="gallery">
+        <span className="gallery-container">
             <Icon component={ContentUs} />
             ગેલેરી
             </span>
