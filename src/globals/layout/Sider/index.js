@@ -44,6 +44,12 @@ class MainMenu extends Component {
             અમારા વિશે
           </Link>
         </Menu.Item>
+        <Menu.Item key="setting:9">
+        <Link to="/galary">
+            <Icon component={ContentUs} />
+            ગેલેરી
+          </Link>
+        </Menu.Item>
         <Menu.Item key="setting:1">
           <Link to="/contact-us">
             <Icon component={ContentUs} />
