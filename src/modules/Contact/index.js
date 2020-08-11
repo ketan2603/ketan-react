@@ -56,6 +56,7 @@ class Home extends React.Component {
           </h2>
         </div>
       </ContainerLayout>
+      
     );
   }
 }
