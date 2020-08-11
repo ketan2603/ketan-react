@@ -46,6 +46,37 @@ const formItemLayout = {
         this.setState({ cityList: data })
 
   }
+  insertFamilyData =async (values)=>{
+    return fetch('http://localhost:4444/familyname/add', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(",responseJson", responseJson)
+        this.setState({ familyDataList: responseJson })
+        return responseJson;
+      }).catch((error) => {
+        console.error(error);
+      });
+  }
+  handleSaveFamilyName= async (e, form) => {
+    e.preventDefault();
+    form.validateFieldsAndScroll(async (err, values) => {
+      if (!err) {
+        try {
+          await this.insertFamilyData(values)
+         console.log("ljljljlj",values)
+        } catch (error) {
+          this.allStore.globals.responseMessageHandler(error);
+          this.isBtnLoading = false;
+        }
+      }
+    });
+  };
   render() {
     const {
         form,
@@ -78,7 +109,7 @@ const formItemLayout = {
             type="primary"
             htmlType="submit"
             title="Submit"
-            // onClick={(e) => equipment.handleSaveBrand(e, form)}
+            onClick={(e) => this.handleSaveFamilyName(e, form)}
           >
             {"submit" }
           </Button>

@@ -7,7 +7,40 @@ import { ReactComponent as ContentUs } from "../../../assets/images/customer-ser
 const { SubMenu } = Menu;
 
 class MainMenu extends Component {
+  constructor() {
+    super();
+    this.state = {
+      zoneList: [],
+      cityList:[],
+      familyList: [],
+      familyDataList: [],
+      currenCity: {}
+    }
+  }
+  componentDidMount = () => {
+    this.callAllZonelist()
+  }
+  callAllZonelist = (values={}) => {
+    return fetch('http://localhost:4444/zone/list', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(",responseJson", responseJson)
+        this.setState({ zoneList: responseJson })
+        return responseJson;
+      }).catch((error) => {
+        console.error(error);
+      });
+
+
+  }
   render() {
+    const {zoneList=[]}=this.state;
     return (
       <Menu
         className="globalMenu"
@@ -30,13 +63,14 @@ class MainMenu extends Component {
             </span>
           }
         >
-          <Menu.Item key="setting:2">
+          {/* <Menu.Item key="setting:2">
             <Link to="/ahmedabad">અમદાવાદ ઝોન</Link>
-          </Menu.Item>
-          <Menu.Item key="setting:4">વડોદરા ઝોન</Menu.Item>
+          </Menu.Item> */}
+          {zoneList.map((zoneItem,zoneIndex)=><Menu.Item key={zoneIndex}>{zoneItem.zone_name}</Menu.Item>)}
+          {/* <Menu.Item key="setting:4">વડોદરા ઝોન</Menu.Item>
           <Menu.Item key="setting:5">ભરૂચ ઝોન</Menu.Item>
           <Menu.Item key="setting:6">કરજણ ઝોન</Menu.Item>
-          <Menu.Item key="setting:8">પાદરા ઝોન</Menu.Item>
+          <Menu.Item key="setting:8">પાદરા ઝોન</Menu.Item> */}
         </SubMenu>
         <Menu.Item key="setting:3">
           <Link to="/history">
