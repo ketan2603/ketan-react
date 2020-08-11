@@ -13,7 +13,7 @@ class Home extends React.Component {
       <ContainerLayout>
         <div className="home">
           <h2 style={{display:'flex',justifyContent:"center"}}>
-            સમસ્ત મારુ પ્રજાપતિ પ્રગતિ મંડળ  સમાજ આપનું હાર્દિક સ્વાગત કરે છે
+            સમસ્ત મારુ પ્રજાપતિ પ્રગતિ મંડળ આપનું હાર્દિક સ્વાગત કરે છે
           </h2>
           <Carousel autoplay>
             <div>
@@ -85,7 +85,7 @@ class Home extends React.Component {
   </Row>
 
 {/* </div>
-<div><h2>વડોદરા ઝોન કારોબારી સભ્ય </h2> 
+<div><h2> કારોબારી સભ્ય </h2> 
 <Row>
   <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
   <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>

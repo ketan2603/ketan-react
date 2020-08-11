@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import ContainerLayout from "globals/components/ContainerLayout";
-import { Button, Table, Collapse } from "antd";
+import React, { Component } from "modules/Vadodarazone/react";
+import ContainerLayout from "modules/Vadodarazone/globals/components/ContainerLayout";
+import { Button, Table, Collapse } from "modules/Vadodarazone/antd";
 const { Panel } = Collapse;
 
 const columns = [
   {
-    title: "કુટુંબના મુય યિ તથા પિરવારના સયોનું નામ",
+    title: "પોતે",
     dataIndex: "person_name",
     key: "person_name",
     render: text => text
@@ -19,11 +19,6 @@ const columns = [
     title: "ભણતર",
     dataIndex: "education",
     key: "education"
-  },
-  {
-    title: "મૂળ વતન",
-    dataIndex: "native place",
-    key: "native place"
   },
   {
     title: "લગ્ન સ્થિતિ",
@@ -51,7 +46,9 @@ const columns = [
     key: "address"
   }
 ];
-export default class Ahmedabadzone extends Component {
+
+
+export default class Vadodarazone extends Component {
   constructor() {
     super();
     this.state = {
@@ -80,6 +77,8 @@ export default class Ahmedabadzone extends Component {
       }).catch((error) => {
         console.error(error);
       });
+
+
   }
   getUseDetails(values, curren_City) {
     this.setState({ currenCity: curren_City })
@@ -98,7 +97,10 @@ export default class Ahmedabadzone extends Component {
       }).catch((error) => {
         console.error(error);
       });
+
+
   }
+
   getFamilyData(values) {
     return fetch('http://localhost:4444/city/getUserbyCity', {
       method: 'POST',
@@ -115,17 +117,21 @@ export default class Ahmedabadzone extends Component {
       }).catch((error) => {
         console.error(error);
       });
+
   }
+
   render() {
     const { cityList = [], familyList = [], familyDataList = [], currenCity = {} } = this.state;
     return (
       <ContainerLayout>
         <span>
           {cityList.map((city, index) =>
-            <Button key={index} style={{ marginRight: 10, fontSize: 20, margintop: 20 }}
+            <Button key={index} style={{ marginRight: 10, fontSize: 20,margintop: 10 }}
               type="primary" onClick={() => this.getUseDetails({ city_id: city.city_id }, city)}>
               {city.city_name}
             </Button>)}
+
+
         </span>
         <div
           style={{
@@ -148,7 +154,7 @@ export default class Ahmedabadzone extends Component {
           <Collapse accordion expandIconPosition={"right"} onChange={(key) => this.getFamilyData({ family_id: key })}>
             {familyList.map((familyItem, index) =>
               <Panel header={familyItem.family_name} key={familyItem.family_id} >
-                <div style={{ backgroundColor: "gray" }}>
+                <div style={{ backgroundColor: "orange" }}>
                   <Table
                     columns={columns}
                     dataSource={familyDataList}
