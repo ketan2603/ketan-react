@@ -13,6 +13,7 @@ const Home = lazy(() => import("modules/Home"));
 const FamilyDirectory = lazy(() => import("./modules/FamilyDirectory"));
 const Contact = lazy(() => import("./modules/Contact"));
 const History = lazy(() => import("./modules/History"));
+const Admin = lazy(() => import("./modules/admin"));
 const Ahmedabadzone = lazy(() => import("./modules/Ahmedabadzone"));
 const redirect = pathname => () => {
   return <Redirect to={{ pathname }} />;
@@ -75,6 +76,7 @@ const ContentRoute = props => {
         />
         <Route exact path="/contact-us" render={() => <Contact {...props} />} />
         <Route exact path="/history" render={() => <History {...props} />} />
+        <Route exact path="/history1" render={() =><Admin {...props} />} />
         <Route
           exact
           path="/ahmedabad"
