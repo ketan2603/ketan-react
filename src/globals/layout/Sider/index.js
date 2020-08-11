@@ -66,7 +66,10 @@ class MainMenu extends Component {
           {/* <Menu.Item key="setting:2">
             <Link to="/ahmedabad">અમદાવાદ ઝોન</Link>
           </Menu.Item> */}
-          {zoneList.map((zoneItem,zoneIndex)=><Menu.Item key={zoneIndex}>{zoneItem.zone_name}</Menu.Item>)}
+          {/* {zoneList.map((zoneItem,zoneIndex)=><Menu.Item key={zoneIndex}>{zoneItem.zone_name}</Menu.Item>)} */}
+          {zoneList.map((zoneItem,zoneIndex)=><Menu.Item key={zoneIndex}>
+            <Link to="/ahmedabad">{zoneItem.zone_name}</Link>
+          </Menu.Item>)}
           {/* <Menu.Item key="setting:4">વડોદરા ઝોન</Menu.Item>
           <Menu.Item key="setting:5">ભરૂચ ઝોન</Menu.Item>
           <Menu.Item key="setting:6">કરજણ ઝોન</Menu.Item>
