@@ -4,7 +4,7 @@ const formItemLayout = {
     labelCol: { xs: 24, sm: 24, md: 24, lg: 8 },
     wrapperCol: { xs: 24, sm: 24, md: 24, lg: 16 }
   };
- class Admin extends Component {
+ class Family extends Component {
   constructor() {
     super();
     this.state = {
@@ -186,7 +186,42 @@ const formItemLayout = {
               ]
             })(<Input placeholder={"Enter name"}  />)}
           </FormItem>
-          
+          <FormItem {...formItemLayout} label={"Family Name"}>
+            {getFieldDecorator("person_name", {
+              initialValue: "",
+              rules: [
+                {
+                  whitespace: true,
+                  required: true,
+                  message: "please"
+                }
+              ]
+            })(<Input placeholder={"Enter name"}  />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label={"Family Name"}>
+            {getFieldDecorator("person_name", {
+              initialValue: "",
+              rules: [
+                {
+                  whitespace: true,
+                  required: true,
+                  message: "please"
+                }
+              ]
+            })(<Input placeholder={"Enter name"}  />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label={"Family Name"}>
+            {getFieldDecorator("person_name", {
+              initialValue: "",
+              rules: [
+                {
+                  whitespace: true,
+                  required: true,
+                  message: "please"
+                }
+              ]
+            })(<Input placeholder={"Enter name"}  />)}
+          </FormItem>
        
          
         </Form>
@@ -194,4 +229,4 @@ const formItemLayout = {
     );
   }
 }
-export default Form.create()(Admin);
+export default Form.create()(Family);

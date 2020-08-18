@@ -61,6 +61,7 @@ export default class Ahmedabadzone extends Component {
       currenCity: {}
     }
   }
+  
   componentDidMount = () => {
     this.callAllQuestionAPi()
   }
@@ -122,7 +123,7 @@ export default class Ahmedabadzone extends Component {
       <ContainerLayout>
         <span>
           {cityList.map((city, index) =>
-            <Button key={index} style={{ marginRight: 10, fontSize: 20, margintop: 20 }}
+            <Button key={index} style={{ marginRight: 10, fontSize: 20, marginTop: 10 }}
               type="primary" onClick={() => this.getUseDetails({ city_id: city.city_id }, city)}>
               {city.city_name}
             </Button>)}
