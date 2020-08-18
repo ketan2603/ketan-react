@@ -80,7 +80,8 @@ const formItemLayout = {
   render() {
     const {
         form,
-        zoneList=[]
+        zoneList=[],
+        isFamilyNameModalVisible,
       } = this.props;
       console.log(this.props)
     const FormItem = Form.Item;
@@ -88,9 +89,9 @@ const formItemLayout = {
     const { getFieldDecorator } = form;
     return (
         <Modal
-        visible={true}
+        visible={isFamilyNameModalVisible}
         destroyOnClose={true}
-        // onCancel={() => equipment.handleBrandModalCancel(false)}
+        onCancel={() => this.props.modalVisibleFunc(false)}
         title={
           'Family Name'
         }
@@ -99,7 +100,7 @@ const formItemLayout = {
             // disabled={equipment.isBtnLoading}
             key="cancel"
             title="Cancel"
-            // onClick={() => equipment.handleBrandModalCancel(form)}
+            onClick={() => this.props.modalVisibleFunc(false)}
           >
             {"cancel" }
           </Button>,

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ContainerLayout from "globals/components/ContainerLayout";
 import AddeditPerson from "./modal/addEditPersion.js";
-
+import AddEditFamilyMember from "./modal/addEditFamilyMember";
+import {  Button  } from "antd";
 export default class Admin extends Component {
   constructor() {
     super();
@@ -10,7 +11,9 @@ export default class Admin extends Component {
       cityList:[],
       familyList: [],
       familyDataList: [],
-      currenCity: {}
+      currenCity: {},
+      isFamilyNameModalVisible:false,
+      isFamilyMemberModalVisible:false
     }
   }
   componentDidMount = () => {
@@ -35,12 +38,56 @@ export default class Admin extends Component {
 
 
   }
+  modalVisibleFunc = (visible) => {
+    this.setState({ isFamilyNameModalVisible: visible });
+   
+  };
+  modalVisibleFamilyMemberFunc = (visible) => {
+    this.setState({ isFamilyMemberModalVisible: visible });
+   
+  };
   
   render() {
     return (
       <ContainerLayout>
         <div className="home">
-       <AddeditPerson {...this.state}/>
+        <span
+            style={{
+              display: "flex",
+              // justifyContent: "space-between",
+              marginBottom: 10,
+            }}
+          >
+            <Button
+              icon="plus"
+              size="large"
+              type="primary"
+              onClick={(e) => {
+                this.modalVisibleFunc(true);
+              }}
+            >
+              ADD Family Name
+            </Button>
+            <Button
+              icon="plus"
+              size="large"
+              type="primary"
+              onClick={(e) => {
+                this.modalVisibleFamilyMemberFunc(true);
+              }}
+            >
+              ADD Family Member
+            </Button>
+           
+          </span>
+       <AddeditPerson 
+       {...this.state}
+         modalVisibleFunc={this.modalVisibleFunc}
+       />
+       <AddEditFamilyMember 
+       {...this.state}
+       modalVisibleFamilyMemberFunc={this.modalVisibleFamilyMemberFunc}
+       />
         </div>
       </ContainerLayout>
     );
