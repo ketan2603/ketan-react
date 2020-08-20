@@ -14,7 +14,7 @@ const FamilyDirectory = lazy(() => import("./modules/FamilyDirectory"));
 const Contact = lazy(() => import("./modules/Contact"));
 const History = lazy(() => import("./modules/History"));
 const Admin = lazy(() => import("./modules/admin"));
-const Admin = lazy(() => import("./modules/admin"));
+//const Admin = lazy(() => import("./modules/admin"));
 //const Gallary = lazy(() => import("./modules/Gallery"));
 const Ahmedabadzone = lazy(() => import("./modules/Ahmedabadzone"));
 const redirect = pathname => () => {
