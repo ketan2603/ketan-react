@@ -290,8 +290,8 @@ const formItemLayout = {
                
               ]
             })(<Radio.Group >
-      <Radio.Button value={'yes'}>Yes</Radio.Button>
-      <Radio.Button value={'no'}>No</Radio.Button>
+      <Radio.Button value={'પરણિત'}>પરણિત</Radio.Button>
+      <Radio.Button value={'અપરણિત'}>અપરણિત</Radio.Button>
     </Radio.Group>)}
           </FormItem>
           {form.getFieldValue("married_status")==='yes'?<FormItem {...formItemLayout} label={"wife address"}>
