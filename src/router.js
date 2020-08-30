@@ -15,7 +15,7 @@ const Contact = lazy(() => import("./modules/Contact"));
 const History = lazy(() => import("./modules/History"));
 const Admin = lazy(() => import("./modules/admin"));
 //const Admin = lazy(() => import("./modules/admin"));
-const Gallary = lazy(() => import("./modules/Gallery"));
+//const Gallary = lazy(() => import("./modules/Gallery"));
 const Ahmedabadzone = lazy(() => import("./modules/Ahmedabadzone"));
 const redirect = pathname => () => {
   return <Redirect to={{ pathname }} />;
@@ -77,7 +77,7 @@ const ContentRoute = props => {
         <Route exact path="/history" render={() => <History {...props} />} />
         <Route exact path="/history1" render={() =><Admin {...props} />} />
         <Route exact path="/history2" render={() =><Admin {...props} />} />
-        <Route exact path="/gallary" render={() =><Gallary {...props} />} /> 
+        {/*<Route exact path="/gallary" render={() =><Gallary {...props} />} />*/} 
         <Route exact path="/ahmedabad"render={() => <Ahmedabadzone {...props} />}
         />
         {/* <Route exact path="/*" render={() => <NotFound {...props} />} /> */}
