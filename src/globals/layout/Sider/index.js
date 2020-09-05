@@ -45,7 +45,7 @@ class MainMenu extends Component {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={["2"]}
-        style={{ lineHeight: "64px" }}
+        style={{ lineHeight: "64px" ,float: "right"}}
       >
         <Menu.Item key="1">
           <Link to="/home">
