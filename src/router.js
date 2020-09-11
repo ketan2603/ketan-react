@@ -81,7 +81,7 @@ const ContentRoute = props => {
         {/* <Route exact path="/gallary" render={() =><Gallary {...props} />} /> */}
         <Route
           exact
-          path="/ahmedabad"
+          path="/ahmedabad/:zone_id"
           render={() => <Ahmedabadzone {...props} />}
         />
 

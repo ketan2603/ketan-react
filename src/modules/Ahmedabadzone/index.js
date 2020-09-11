@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ContainerLayout from "globals/components/ContainerLayout";
 import { Button, Table, Collapse } from "antd";
+import { withRouter } from "react-router-dom";
 const { Panel } = Collapse;
 
 const columns = [
@@ -51,7 +52,7 @@ const columns = [
     key: "address"
   }
 ];
-export default class Ahmedabadzone extends Component {
+ class Ahmedabadzone extends Component {
   constructor() {
     super();
     this.state = {
@@ -62,10 +63,12 @@ export default class Ahmedabadzone extends Component {
     }
   }
   componentDidMount = () => {
-    this.callAllQuestionAPi()
+    // this.callAllQuestionAPi()
   }
-  callAllQuestionAPi = (values) => {
-    return fetch('http://localhost:4444/city/listAll', {
+  callAllQuestionAPi = (values={}) => {
+    const paramsData = this.props && this.props.match && this.props.match.params
+    values.zone_id = Number(paramsData.zone_id)
+    return fetch('http://localhost:4444/city/list', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -116,8 +119,16 @@ export default class Ahmedabadzone extends Component {
         console.error(error);
       });
   }
+  // static getDerivedStateFromProps(props, state) {
+  //  console.log("sdfsdf",props)
+  //  console.log("sdfoooosdf",state)
+  //  const {params={}}=props.match;
+  //   const values={zone_id : Number(params.zone_id)}
+  //  this.callAllQuestionAPi(values)
+  // }
   render() {
     const { cityList = [], familyList = [], familyDataList = [], currenCity = {} } = this.state;
+    console.log(",jjkjkjj",this.props && this.props.match && this.props.match.params)
     return (
       <ContainerLayout>
         <span>
@@ -164,3 +175,4 @@ export default class Ahmedabadzone extends Component {
     );
   }
 }
+export default withRouter(Ahmedabadzone)
