@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { Modal,Button,Form,Input,Select,Radio,DatePicker } from "antd";
-import moment from "moment";
+import { Modal,Button,Form,Input,Select } from "antd";
 const formItemLayout = {
     labelCol: { xs: 24, sm: 24, md: 24, lg: 8 },
     wrapperCol: { xs: 24, sm: 24, md: 24, lg: 16 }
   };
- class AddEditFamilyMember extends Component {
+ class Family extends Component {
   constructor() {
     super();
     this.state = {
       cityList:[],
       familyList: [],
-      familyNameList: [],
+      familyDataList: [],
       currenCity: {}
     }
   }
@@ -47,9 +46,8 @@ const formItemLayout = {
         this.setState({ cityList: data })
 
   }
-  getFamilyName(values, curren_City) {
-    // this.setState({ currenCity: curren_City })
-    return fetch('http://localhost:4444/city/getFamilybyCity', {
+  insertFamilyData =async (values)=>{
+    return fetch('http://localhost:4444/familyname/add', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -59,38 +57,18 @@ const formItemLayout = {
     }).then((response) => response.json())
       .then((responseJson) => {
         console.log(",responseJson", responseJson)
-        this.setState({ familyNameList: responseJson })
+        this.setState({ familyDataList: responseJson })
         return responseJson;
       }).catch((error) => {
         console.error(error);
       });
   }
-  insertFamilyMemberData =async (values)=>{
-    return fetch('http://localhost:4444/family/memer/add', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        console.log(",responseJson", responseJson)
-        // this.setState({ familyNameList: responseJson })
-        return responseJson;
-      }).catch((error) => {
-        console.error(error);
-      });
-  }
-  handleSaveFamilyMember= async (e, form) => {
+  handleSaveFamilyName= async (e, form) => {
     e.preventDefault();
     form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
         try {
-            if (values.dob) {
-                values.dob = moment(values.dob).toISOString(true);
-              }
-          await this.insertFamilyMemberData(values)
+          await this.insertFamilyData(values)
          console.log("ljljljlj",values)
         } catch (error) {
           this.allStore.globals.responseMessageHandler(error);
@@ -102,8 +80,7 @@ const formItemLayout = {
   render() {
     const {
         form,
-        zoneList=[],
-        isFamilyMemberModalVisible,
+        zoneList=[]
       } = this.props;
       console.log(this.props)
     const FormItem = Form.Item;
@@ -111,9 +88,9 @@ const formItemLayout = {
     const { getFieldDecorator } = form;
     return (
         <Modal
-        visible={isFamilyMemberModalVisible}
+        visible={true}
         destroyOnClose={true}
-        onCancel={() => this.props.modalVisibleFamilyMemberFunc(false)}
+        // onCancel={() => equipment.handleBrandModalCancel(false)}
         title={
           'Family Name'
         }
@@ -122,7 +99,7 @@ const formItemLayout = {
             // disabled={equipment.isBtnLoading}
             key="cancel"
             title="Cancel"
-            onClick={() => this.props.modalVisibleFamilyMemberFunc(false)}
+            // onClick={() => equipment.handleBrandModalCancel(form)}
           >
             {"cancel" }
           </Button>,
@@ -132,7 +109,7 @@ const formItemLayout = {
             type="primary"
             htmlType="submit"
             title="Submit"
-            onClick={(e) => this.handleSaveFamilyMember(e, form)}
+            onClick={(e) => this.handleSaveFamilyName(e, form)}
           >
             {"submit" }
           </Button>
@@ -186,12 +163,6 @@ const formItemLayout = {
                 optionFilterProp="children"
                 showSearch
                 placeholder={ "Select" }
-                onChange={(city_id) => {
-                  const cityValue={
-                    city_id:city_id
-                  }
-                  this.getFamilyName(cityValue);
-                }}
               >
                 {this.state.cityList.map((item) => {
                   return (
@@ -203,123 +174,59 @@ const formItemLayout = {
               </Select>
             )}
           </FormItem>
-         <FormItem {...formItemLayout} label={"Family Name"}>
-            {getFieldDecorator("family_id", {
-              initialValue: undefined,
-              rules: [
-                {
-                  required: true,
-                  message: "Select Family Name" 
-                }
-              ]
-            })(
-              <Select
-                dropdownMatchSelectWidth={false}
-                optionFilterProp="children"
-                showSearch
-                placeholder={ "Select" }
-                // onChange={(city_id) => {
-                //   const cityValue={
-                //     city_id:city_id
-                //   }
-                //   this.getFamilyName(cityValue);
-                // }}
-              >
-                {this.state.familyNameList.map((item) => {
-                  return (
-                    <Option key={item.family_id} value={item.family_id}>
-                      {item.family_name}
-                    </Option>
-                  );
-                })}
-              </Select>
-            )}
-          </FormItem>
-          <FormItem {...formItemLayout} label={"person Name"}>
+          <FormItem {...formItemLayout} label={"Family Name"}>
             {getFieldDecorator("person_name", {
               initialValue: "",
               rules: [
                 {
                   whitespace: true,
                   required: true,
-                  message: "please Enter person name"
+                  message: "please"
                 }
               ]
-            })(<Input placeholder={"Enter person name"}  />)}
+            })(<Input placeholder={"Enter name"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"mobile number"}>
-            {getFieldDecorator("mobile_number", {
+          <FormItem {...formItemLayout} label={"Family Name"}>
+            {getFieldDecorator("person_name", {
               initialValue: "",
               rules: [
                 {
                   whitespace: true,
                   required: true,
-                  message: "please Enter mobile number"
+                  message: "please"
                 }
               ]
-            })(<Input type="number" placeholder={"Enter mobile number"}  />)}
+            })(<Input placeholder={"Enter name"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"education"}>
-            {getFieldDecorator("education", {
+          <FormItem {...formItemLayout} label={"Family Name"}>
+            {getFieldDecorator("person_name", {
               initialValue: "",
               rules: [
                 {
                   whitespace: true,
                   required: true,
-                  message: "please Enter education"
+                  message: "please"
                 }
               ]
-            })(<Input placeholder={"Enter education"}  />)}
+            })(<Input placeholder={"Enter name"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"address"}>
-            {getFieldDecorator("address", {
+          <FormItem {...formItemLayout} label={"Family Name"}>
+            {getFieldDecorator("person_name", {
               initialValue: "",
               rules: [
                 {
                   whitespace: true,
                   required: true,
-                  message: "please Enter address"
+                  message: "please"
                 }
               ]
-            })(<Input placeholder={"Enter address"}  />)}
+            })(<Input placeholder={"Enter name"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"married status"}>
-            {getFieldDecorator("married_status", {
-              initialValue: "no",
-              rules: [
-               
-              ]
-            })(<Radio.Group >
-      <Radio.Button value={'પરણિત'}>પરણિત</Radio.Button>
-      <Radio.Button value={'અપરણિત'}>અપરણિત</Radio.Button>
-    </Radio.Group>)}
-          </FormItem>
-          {form.getFieldValue("married_status")==='yes'?<FormItem {...formItemLayout} label={"wife address"}>
-            {getFieldDecorator("wife_address", {
-              initialValue: "",
-              rules: [
-                {
-                  whitespace: true,
-                  required: true,
-                  message: "please Enter wife address"
-                }
-              ]
-            })(<Input placeholder={"Enter wife address"}  />)}
-          </FormItem>:null}
-          <FormItem {...formItemLayout} label={"dob Date"}>
-          {getFieldDecorator("dob", {
-            initialValue: undefined,
-            rules: [
-              {
-                required: false,
-                message: "Please enter dob Date",
-              },
-            ],
-          })(<DatePicker style={{ width: "100%" }} format="DD/MM/YYYY" />)}
-        </FormItem>
+       
+         
         </Form>
       </Modal>
     );
   }
 }
-export default Form.create()(AddEditFamilyMember);
+export default Form.create()(Family);

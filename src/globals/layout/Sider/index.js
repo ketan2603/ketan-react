@@ -36,8 +36,6 @@ class MainMenu extends Component {
       }).catch((error) => {
         console.error(error);
       });
-
-
   }
   render() {
     const {zoneList=[]}=this.state;
@@ -81,7 +79,7 @@ class MainMenu extends Component {
             અમારા વિશે
           </Link>
         </Menu.Item>
-        <Menu.Item >
+        <Menu.Item key= "setting:5">
         <Link to="/gallery">
             <Icon component={ContentUs} />
             ગેલેરી 
