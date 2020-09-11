@@ -63,7 +63,7 @@ const columns = [
     }
   }
   componentDidMount = () => {
-    // this.callAllQuestionAPi()
+    this.callAllQuestionAPi()
   }
   callAllQuestionAPi = (values={}) => {
     const paramsData = this.props && this.props.match && this.props.match.params
