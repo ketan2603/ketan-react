@@ -5,8 +5,8 @@ import { withRouter } from "react-router-dom";
 const { Panel } = Collapse;
 
 const columns = [
-  {
-    title: "કુટુંબના મુય યિ તથા પિરવારના સયોનું નામ",
+  {/*કુટુંબના મુખ્ય વ્યક્તિનું નામ,તથા પરિવાર  સભ્યોનું નામ */
+    title: "કુટુંબના સભ્યોનું નામ",
     dataIndex: "person_name",
     key: "person_name",
     render: text => text
@@ -147,7 +147,7 @@ const columns = [
             marginTop: 10
           }}
         >
-          <h1 style={{ color: "red", fontSize: 35 }}>{currenCity.city_name}</h1>
+          <h1 style={{ color: "red", fontSize: 40 }}>{currenCity.city_name}</h1>
         </div>
         {/* <div style={{ backgroundColor: "orange" }}>
           <Table
@@ -160,7 +160,7 @@ const columns = [
           <Collapse accordion expandIconPosition={"right"} onChange={(key) => this.getFamilyData({ family_id: key })}>
             {familyList.map((familyItem, index) =>
               <Panel header={familyItem.family_name} key={familyItem.family_id} >
-                <div style={{ backgroundColor: "gray" }}>
+                <div style={{ backgroundColor: "orange" }}>
                   <Table
                     columns={columns}
                     dataSource={familyDataList}
