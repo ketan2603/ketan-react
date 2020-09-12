@@ -78,7 +78,7 @@ const ContentRoute = props => {
         <Route exact path="/history1" render={() =><Admin {...props} />} />
         <Route exact path="/history2" render={() =><Admin {...props} />} />
         {/*<Route exact path="/gallary" render={() =><Gallary {...props} />} />*/} 
-        <Route exact path="/ahmedabad"render={() => <Ahmedabadzone {...props} />}
+        <Route exact path="/ahmedabad/:zone_id"render={() => <Ahmedabadzone {...props} />}
         />
         {/* <Route exact path="/*" render={() => <NotFound {...props} />} /> */}
       </Switch>
