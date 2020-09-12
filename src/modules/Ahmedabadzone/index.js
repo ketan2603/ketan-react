@@ -4,7 +4,7 @@ import { Button, Table, Collapse } from "antd";
 import { withRouter } from "react-router-dom";
 const { Panel } = Collapse;
 
-const columns = [
+const columns =  [
   {/*કુટુંબના મુખ્ય વ્યક્તિનું નામ,તથા પરિવાર  સભ્યોનું નામ */
     title: "કુટુંબના સભ્યોનું નામ",
     dataIndex: "person_name",
@@ -160,8 +160,9 @@ const columns = [
           <Collapse accordion expandIconPosition={"right"} onChange={(key) => this.getFamilyData({ family_id: key })}>
             {familyList.map((familyItem, index) =>
               <Panel header={familyItem.family_name} key={familyItem.family_id} >
-                <div style={{ backgroundColor: "orange" }}>
+                <div style={{ backgroundColor: "orange", textcolor: "red", fontSize: 40 }}>
                   <Table
+                  style ={{fontSize:30}}
                     columns={columns}
                     dataSource={familyDataList}
                     pagination={{ position: "none" }}

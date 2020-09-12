@@ -55,7 +55,7 @@ export default class Admin extends Component {
             style={{
               display: "flex",
               // justifyContent: "space-between",
-              marginBottom: 10,
+              marginBottom: 20,
             }}
           >
             <Button
