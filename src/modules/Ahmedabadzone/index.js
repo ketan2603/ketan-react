@@ -69,7 +69,7 @@ const columns = [
   callAllQuestionAPi = (values={}) => {
     const paramsData = this.props && this.props.match && this.props.match.params
     values.zone_id = Number(paramsData.zone_id)
-    return fetch('http://localhost:4444/city/list', {
+    return fetch('http://localhost:4444/city/list1', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
