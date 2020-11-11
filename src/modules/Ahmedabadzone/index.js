@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ContainerLayout from "globals/components/ContainerLayout";
 import { Button, Table, Collapse } from "antd";
 import { withRouter } from "react-router-dom";
+import "./ahmedabadzone.style.scss";
 const { Panel } = Collapse;
 
 const columns =  [
@@ -160,9 +161,8 @@ const columns =  [
           <Collapse accordion expandIconPosition={"right"} onChange={(key) => this.getFamilyData({ family_id: key })}>
             {familyList.map((familyItem, index) =>
               <Panel header={familyItem.family_name} key={familyItem.family_id} >
-                <div style={{ backgroundColor: "orange", textcolor: "red", fontSize: 40 }}>
+                <div >
                   <Table
-                  style ={{fontSize:30}}
                     columns={columns}
                     dataSource={familyDataList}
                     pagination={{ position: "none" }}
