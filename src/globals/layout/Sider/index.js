@@ -47,7 +47,7 @@ class MainMenu extends Component {
         defaultSelectedKeys={["2"]}
         style={{ lineHeight: "64px" ,float: "right"}}
       >
-        <Menu.Item key="1">
+        <Menu.Item key="home">
           <Link to="/home">
             <Icon type="home" />
             હોમ

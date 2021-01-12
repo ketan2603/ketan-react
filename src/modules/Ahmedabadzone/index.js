@@ -47,11 +47,11 @@ const columns =  [
     dataIndex: "office_address",
     key: "office_address"
   },
-  {
-    title: "સરનામું",
-    dataIndex: "address",
-    key: "address"
-  }
+  // {
+  //   title: "સરનામું",
+  //   dataIndex: "address",
+  //   key: "address"
+  // }
 ];
  class Ahmedabadzone extends Component {
   constructor() {
@@ -60,7 +60,9 @@ const columns =  [
       cityList: [],
       familyList: [],
       familyDataList: [],
-      currenCity: {}
+      currenCity: {},
+      recentzone_id:0
+
     }
   }
   
@@ -79,8 +81,8 @@ const columns =  [
       body: JSON.stringify(values),
     }).then((response) => response.json())
       .then((responseJson) => {
-        // console.log(",responseJson", responseJson)
-        this.setState({ cityList: responseJson })
+        console.log(",responseJson", responseJson)
+        this.setState({ cityList: responseJson.data,recentzone_id:responseJson.zone_id })
         return responseJson;
       }).catch((error) => {
         console.error(error);
@@ -114,7 +116,7 @@ const columns =  [
       body: JSON.stringify(values),
     }).then((response) => response.json())
       .then((responseJson) => {
-        console.log(",responseJson", responseJson)
+        
         this.setState({ familyDataList: responseJson })
         return responseJson;
       }).catch((error) => {
@@ -129,8 +131,15 @@ const columns =  [
   //  this.callAllQuestionAPi(values)
   // }
   render() {
-    const { cityList = [], familyList = [], familyDataList = [], currenCity = {} } = this.state;
-    console.log(",jjkjkjj",this.props && this.props.match && this.props.match.params)
+    const { cityList = [], familyList = [], familyDataList = [], currenCity = {},recentzone_id } = this.state;
+   
+   const {params={} }=this.props.match
+if(params && Number (params.zone_id)!==recentzone_id)
+{
+  this.callAllQuestionAPi()
+}
+
+   
     return (
       <ContainerLayout>
         <span>
@@ -162,6 +171,8 @@ const columns =  [
             {familyList.map((familyItem, index) =>
               <Panel header={familyItem.family_name} key={familyItem.family_id} >
                 <div >
+               <div  style ={{display: "flex", justifyContent: "flex-end"}}>  {familyDataList.length && familyDataList[0].address}
+               </div>
                   <Table
                     columns={columns}
                     dataSource={familyDataList}

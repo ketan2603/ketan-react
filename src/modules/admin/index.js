@@ -62,6 +62,7 @@ export default class Admin extends Component {
               icon="plus"
               size="large"
               type="primary"
+              marginleft="15px"
               onClick={(e) => {
                 this.modalVisibleFunc(true);
               }}
@@ -72,6 +73,7 @@ export default class Admin extends Component {
               icon="plus"
               size="large"
               type="primary"
+              marginleft="15px"
               onClick={(e) => {
                 this.modalVisibleFamilyMemberFunc(true);
               }}
