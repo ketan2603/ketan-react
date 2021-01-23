@@ -13,7 +13,8 @@ const Home = lazy(() => import("modules/Home"));
 const FamilyDirectory = lazy(() => import("./modules/FamilyDirectory"));
 const Contact = lazy(() => import("./modules/Contact"));
 const History = lazy(() => import("./modules/History"));
-const Admin = lazy(() => import("./modules/admin"));
+const Admin= lazy(() => import("./modules/admin"));
+const AdminHome = lazy(() => import("./modules/admin/admin"));
 //const Admin = lazy(() => import("./modules/admin"));
 //const Gallary = lazy(() => import("./modules/Gallery"));
 const Ahmedabadzone = lazy(() => import("./modules/Ahmedabadzone"));
@@ -75,7 +76,8 @@ const ContentRoute = props => {
         />
         <Route exact path="/contact-us" render={() => <Contact {...props} />} />
         <Route exact path="/history" render={() => <History {...props} />} />
-        <Route exact path="/history1" render={() =><Admin {...props} />} />
+        <Route exact path="/Admin" render={() =><Admin {...props} />} />
+        <Route exact path="/Admin/Home" render={() =><AdminHome {...props} />} />
         <Route exact path="/history2" render={() =><Admin {...props} />} />
         {/*<Route exact path="/gallary" render={() =><Gallary {...props} />} />*/} 
         <Route exact path="/ahmedabad/:zone_id"render={() => <Ahmedabadzone {...props} />}

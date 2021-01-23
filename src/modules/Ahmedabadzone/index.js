@@ -16,6 +16,8 @@ const columns =  [
     title: "જન્મ તારીખ",
     dataIndex: "dob",
     key: "dob"
+    
+
   },
   {
     title: "ભણતર",
@@ -169,11 +171,12 @@ if(params && Number (params.zone_id)!==recentzone_id)
         <div style={{ marginTop: 30 }}>
           <Collapse accordion expandIconPosition={"right"} onChange={(key) => this.getFamilyData({ family_id: key })}>
             {familyList.map((familyItem, index) =>
-              <Panel header={familyItem.family_name} key={familyItem.family_id} >
+              <Panel   header={familyItem.family_name} key={familyItem.family_id} >
                 <div >
                <div  style ={{display: "flex", justifyContent: "flex-end"}}>  {familyDataList.length && familyDataList[0].address}
                </div>
                   <Table
+                   bordered
                     columns={columns}
                     dataSource={familyDataList}
                     pagination={{ position: "none" }}
