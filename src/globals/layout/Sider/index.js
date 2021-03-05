@@ -80,10 +80,14 @@ class MainMenu extends Component {
           </Link>
         </Menu.Item>
         <Menu.Item key= "setting:5">
-        <Link to="/gallery">
+        <Link to="/galleryHome">
             <Icon component={ContentUs} />
             ગેલેરી 
           </Link>
+        {/* <Link to="/gallery">
+            <Icon component={ContentUs} />
+            ગેલેરી 
+          </Link> */}
         </Menu.Item>
         <Menu.Item key="setting:1">
           <Link to="/contact-us">
