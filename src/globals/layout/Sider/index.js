@@ -45,7 +45,7 @@ class MainMenu extends Component {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={["2"]}
-        style={{ lineHeight: "64px" ,float: "right"}}
+        style={{ lineHeight: "64px" ,float: "right",fontWeight: '600',fontSize:'20px'}}
       >
         <Menu.Item key="home">
           <Link to="/home">
@@ -95,12 +95,7 @@ class MainMenu extends Component {
             કમીટી સંપર્ક
           </Link>
         </Menu.Item>
-        <Menu.Item key="setting:10">
-          <Link to="/imageUpload">
-            <Icon component={ContentUs} />
-            images
-          </Link>
-        </Menu.Item>
+
       </Menu>
     );
   }

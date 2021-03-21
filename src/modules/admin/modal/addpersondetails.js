@@ -90,16 +90,16 @@ const formItemLayout = {
         <Modal
         visible={true}
         destroyOnClose={true}
-        // onCancel={() => equipment.handleBrandModalCancel(false)}
+        onCancel={() => equipment.handleBrandModalCancel(false)}
         title={
-          'Family Name'
+          'Family Name33333333'
         }
         footer={[
           <Button
             // disabled={equipment.isBtnLoading}
             key="cancel"
             title="Cancel"
-            // onClick={() => equipment.handleBrandModalCancel(form)}
+            onClick={() => equipment.handleBrandModalCancel(form)}
           >
             {"cancel" }
           </Button>,

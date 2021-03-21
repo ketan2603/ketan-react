@@ -9,10 +9,37 @@ const formItemLayout = {
   constructor() {
     super();
     this.state = {
+
       cityList:[],
       familyList: [],
       familyNameList: [],
-      currenCity: {}
+      currenCity: {},
+      reletionshiplist:[
+        {
+          reletionship_id:1,
+          reletionship_name:"પોતે"
+        },
+        {
+          reletionship_id:2,
+          reletionship_name:"પત્નિ"
+        },
+        {
+          reletionship_id:3,
+          reletionship_name:"પુત્ર"
+        },
+        {
+          reletionship_id:4,
+          reletionship_name:"પુત્રવધૂ"
+        },
+        {
+          reletionship_id:5,
+          reletionship_name:"પોત્ર"
+        },
+        {
+          reletionship_id:6,
+          reletionship_name:"પૌત્રી"
+        }
+      ],
     }
   }
   callAlllist = async(values) => {
@@ -59,6 +86,7 @@ const formItemLayout = {
     }).then((response) => response.json())
       .then((responseJson) => {
         console.log(",responseJson", responseJson)
+        // this.props.modalVisibleFamilyMemberFunc(false)
         this.setState({ familyNameList: responseJson })
         return responseJson;
       }).catch((error) => {
@@ -76,6 +104,7 @@ const formItemLayout = {
     }).then((response) => response.json())
       .then((responseJson) => {
         console.log(",responseJson", responseJson)
+        this.props.modalVisibleFamilyMemberFunc(false)
         // this.setState({ familyNameList: responseJson })
         return responseJson;
       }).catch((error) => {
@@ -235,7 +264,51 @@ const formItemLayout = {
               </Select>
             )}
           </FormItem>
-          <FormItem {...formItemLayout} label={"person Name"}>
+          <FormItem {...formItemLayout} label={"Reletionship"}>
+            {getFieldDecorator("reletionship_id", {
+              initialValue: undefined,
+              rules: [
+                {
+                  required: true,
+                  message: "Select reletionship" 
+                }
+              ]
+            })(
+              <Select
+                dropdownMatchSelectWidth={false}
+                optionFilterProp="children"
+                showSearch
+                placeholder={ "Select" }
+                // onChange={(city_id) => {
+                //   const cityValue={
+                //     city_id:city_id
+                //   }
+                //   this.getFamilyName(cityValue);
+                // }}
+              >
+                {this.state.reletionshiplist.map((item) => {
+                  return (
+                    <Option key={item.reletionship_id} value={item.reletionship_id}>
+                      {item.reletionship_name}
+                    </Option>
+                  );
+                })}
+              </Select>
+            )}
+          </FormItem>
+          <FormItem {...formItemLayout} label={"Native Place"}>
+            {getFieldDecorator("nativeplace_name", {
+              initialValue: "",
+              rules: [
+                {
+                  whitespace: true,
+                  required: true,
+                  message: "please Enter native place name"
+                }
+              ]
+            })(<Input placeholder={"Enter nativeplace name"}  />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label={"Person Name"}>
             {getFieldDecorator("person_name", {
               initialValue: "",
               rules: [
@@ -247,7 +320,7 @@ const formItemLayout = {
               ]
             })(<Input placeholder={"Enter person name"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"mobile number"}>
+          <FormItem {...formItemLayout} label={"Mobile Number"}>
             {getFieldDecorator("mobile_number", {
               initialValue: "",
               rules: [
@@ -259,7 +332,7 @@ const formItemLayout = {
               ]
             })(<Input type="number" placeholder={"Enter mobile number"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"education"}>
+          <FormItem {...formItemLayout} label={"Education"}>
             {getFieldDecorator("education", {
               initialValue: "",
               rules: [
@@ -271,7 +344,7 @@ const formItemLayout = {
               ]
             })(<Input placeholder={"Enter education"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"address"}>
+          <FormItem {...formItemLayout} label={"Address"}>
             {getFieldDecorator("address", {
               initialValue: "",
               rules: [
@@ -283,7 +356,7 @@ const formItemLayout = {
               ]
             })(<Input placeholder={"Enter address"}  />)}
           </FormItem>
-          <FormItem {...formItemLayout} label={"married status"}>
+          <FormItem {...formItemLayout} label={"Married status"}>
             {getFieldDecorator("married_status", {
               initialValue: "no",
               rules: [
