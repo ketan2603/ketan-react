@@ -8,6 +8,51 @@ import PIC4 from "../../assets/images/IMG-20191120-WA0157.jpg";
 import{Row,Col} from "antd";
 import "./home.style.scss";
 class Home extends React.Component {
+
+  constructor() {
+    debugger;
+    super();
+    this.state = {
+      memberList: [
+    //     {"id":1,"s_name":"રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)","zone_id":1},
+    //     {"id":2,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":2},
+    //     {"id":3,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":3},
+    //     {"id":4,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":4},
+    //     {"id":5,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":5},
+    //     {"id":6,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":1},
+    //     {"id":7,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":1},
+    //     {"id":8,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":1},
+    //     {"id":9,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":1},
+    //     {"id":10,"s_name":"અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)","zone_id":2},
+    //  
+   ],
+    }
+  }
+
+  componentDidMount = () => {
+    this.callAllMembersAPi()
+  }
+
+  callAllMembersAPi = (values={}) => {
+    //debugger;
+      return fetch('http://localhost:4444/members/all', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        debugger;
+        console.log("members data response", responseJson)
+        this.setState({ memberList: responseJson })
+        return responseJson;
+      }).catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
     return (
       <ContainerLayout>
@@ -61,106 +106,116 @@ class Home extends React.Component {
   આપણો પ્રજાપતિ
    આપણો પરીવાર
             
-          </div>
-          <div><h2>આમદવાદ ઝોન કારોબારી સભ્ય </h2> 
-  <Row>
-  <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
-  <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
-  <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી)</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>પ્રવીણભાઈ ડાહ્યભાઈ પ્રજાપતિ</h3>} </Col>
-  <Col span={8}>{<h3>વિનોદભાઈ  દેસાઈભાઈ પ્રજાપતિ</h3>}</Col>
-  <Col span={8}>{<h3>ઘનશ્યામભાઈ રમણભાઈ પ્રજાપતિ</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>રમેશભાઈ  નરોત્તમભાઈ  પ્રજાપતિ</h3>} </Col>
-  <Col span={8}>{<h3>અરવિંદભાઈ નરોત્તમભાઈ પ્રજાપતિ</h3>}</Col>
-  <Col span={8}>{<h3> કેતનભાઈ ઘનશ્યામભાઈ પ્રજાપતિ </h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>જગદીશભાઈ  છોટાભાઈ પ્રજાપતિ</h3>} </Col>
-  <Col span={8}>{<h3>જગદીશભાઈ છોટાભાઈ પ્રજાપતિ</h3>}</Col>
-  <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિ</h3>}</Col>
-  </Row>
+  </div>
 
-</div>
+  <div>
+    <h2>આમદવાદ ઝોન કારોબારી સભ્ય </h2> 
+    <Row>
+        {this.state.memberList.filter((item) => item.zone_id == 1).map((item) => {
+          return (
+            <Col span={8}>{<h3>{item.s_name}</h3>} </Col>
+            );
+        })}
+    </Row>
+    {/* <Row>
+    <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
+    <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
+    <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી)</h3>}</Col>
+    </Row>
+    <Row>
+    <Col span={8}>{<h3>પ્રવીણભાઈ ડાહ્યભાઈ પ્રજાપતિ</h3>} </Col>
+    <Col span={8}>{<h3>વિનોદભાઈ  દેસાઈભાઈ પ્રજાપતિ</h3>}</Col>
+    <Col span={8}>{<h3>ઘનશ્યામભાઈ રમણભાઈ પ્રજાપતિ</h3>}</Col>
+    </Row>
+    <Row>
+    <Col span={8}>{<h3>રમેશભાઈ  નરોત્તમભાઈ  પ્રજાપતિ</h3>} </Col>
+    <Col span={8}>{<h3>અરવિંદભાઈ નરોત્તમભાઈ પ્રજાપતિ</h3>}</Col>
+    <Col span={8}>{<h3> કેતનભાઈ ઘનશ્યામભાઈ પ્રજાપતિ </h3>}</Col>
+    </Row>
+    <Row>
+    <Col span={8}>{<h3>જગદીશભાઈ  છોટાભાઈ પ્રજાપતિ</h3>} </Col>
+    <Col span={8}>{<h3>જગદીશભાઈ છોટાભાઈ પ્રજાપતિ</h3>}</Col>
+    <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિ</h3>}</Col>
+    </Row> */}
+  </div>
 
-<div><h2>વડોદરા ઝોન કારોબારી સભ્ય </h2>  
-<Row>
-  <Col span={8}>{<h3>દેવેન્દ્રભાઈ અરવિંદભાઈ પ્રજાપતિ (પ્રમુખ)</h3>} </Col>
-  <Col span={8}>{<h3>અશોકભાઈ સોમાભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
-  <Col span={8}>{<h3>રણછોડભાઈ તળજાભાઈ મારૂ(સંગઠન મંત્રી</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>અંબાલાલભાઈ છીતાભાઈ મારૂ હિરણી</h3>} </Col>
-  <Col span={8}>{<h3>દુર્ગેશભાઈ ગોરધનભાઈ પ્રજાપતિ </h3>}</Col>
-  <Col span={8}>{<h3>આશિષભાઈ રમેશભાઈ પ્રજાપતિ</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>રતિલાલભાઈ છીતાભાઈ મારૂ</h3>} </Col>
-  <Col span={8}>{<h3>ભરતભાઈ અંબાલાલ પ્રજાપતિ</h3>}</Col>
-  <Col span={8}>{<h3>નટવરભાઈ છગનભાઈ મારૂ</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>વિપુલભાઈ નટવરભાઈ મારૂ</h3>} </Col>
-  <Col span={8}>{<h3>અશોકભાઈ ઠાકોરભાઈ પ્રજાપતિ</h3>}</Col>
-  <Col span={8}>{<h3>નિલેશભાઈ કિશનભાઈ મારૂ </h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>પુંજાભાઈ છગનભાઈ પ્રજાપતિ</h3>} </Col>
-  <Col span={8}>{<h3>કનુભાઈ રમણભાઈ પ્રજાપતિ</h3>}</Col>
-  
-  </Row>
-</div>
-{/*
-<div><h2>ભરૂચ ઝોન કારોબારી સભ્ય </h2> 
-<Row>
-  <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
-  <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
-  <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
-  <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
-  <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
-  <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
-  <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
-  <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
-  <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
-  </Row>
-</div>
-<div><h2>કરજણ ઝોન કારોબારી સભ્ય </h2> 
-  <Row>
-  <Col span={8}>{1} </Col>
-  <Col span={8}>{2}</Col>
-  <Col span={8}>{3}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{4}</Col>
-  <Col span={8}>{5}</Col>
-  <Col span={8}>{6}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{7}</Col>
-  <Col span={8}>{8}</Col>
-  <Col span={8}>{9}</Col>
-  </Row>
-  <Row>
-  <Col span={8}>{10}</Col>
-  <Col span={8}>{11}</Col>
-  <Col span={8}>{12}</Col>
-  </Row>
+  <div>
+    <h2>વડોદરા ઝોન કારોબારી સભ્ય </h2>
+    <Row>
+        {this.state.memberList.filter((item) => item.zone_id == 2).map((item) => {
+          return (
+            <Col span={8}>{<h3>{item.s_name}</h3>} </Col>
+            );
+        })}
+    </Row> 
+    {/* <Row>
+      <Col span={8}>{<h3>દેવેન્દ્રભાઈ અરવિંદભાઈ પ્રજાપતિ (પ્રમુખ)</h3>} </Col>
+      <Col span={8}>{<h3>અશોકભાઈ સોમાભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
+      <Col span={8}>{<h3>રણછોડભાઈ તળજાભાઈ મારૂ(સંગઠન મંત્રી</h3>}</Col>
+      </Row>
+      <Row>
+      <Col span={8}>{<h3>અંબાલાલભાઈ છીતાભાઈ મારૂ હિરણી</h3>} </Col>
+      <Col span={8}>{<h3>દુર્ગેશભાઈ ગોરધનભાઈ પ્રજાપતિ </h3>}</Col>
+      <Col span={8}>{<h3>આશિષભાઈ રમેશભાઈ પ્રજાપતિ</h3>}</Col>
+      </Row>
+      <Row>
+      <Col span={8}>{<h3>રતિલાલભાઈ છીતાભાઈ મારૂ</h3>} </Col>
+      <Col span={8}>{<h3>ભરતભાઈ અંબાલાલ પ્રજાપતિ</h3>}</Col>
+      <Col span={8}>{<h3>નટવરભાઈ છગનભાઈ મારૂ</h3>}</Col>
+      </Row>
+      <Row>
+      <Col span={8}>{<h3>વિપુલભાઈ નટવરભાઈ મારૂ</h3>} </Col>
+      <Col span={8}>{<h3>અશોકભાઈ ઠાકોરભાઈ પ્રજાપતિ</h3>}</Col>
+      <Col span={8}>{<h3>નિલેશભાઈ કિશનભાઈ મારૂ </h3>}</Col>
+      </Row>
+      <Row>
+      <Col span={8}>{<h3>પુંજાભાઈ છગનભાઈ પ્રજાપતિ</h3>} </Col>
+      <Col span={8}>{<h3>કનુભાઈ રમણભાઈ પ્રજાપતિ</h3>}</Col>
+      
+      </Row> */}
+  </div>
 
-</div>
-<div><h2>પાદરા ઝોન કારોબારી સભ્ય </h2> 
+  <div>
+    <h2>ભરૂચ ઝોન કારોબારી સભ્ય </h2>
+    <Row>
+        {this.state.memberList.filter((item) => item.zone_id == 3).map((item) => {
+          return (
+            <Col span={8}>{<h3>{item.s_name}</h3>} </Col>
+            );
+        })}
+    </Row> 
+  {/* <Row>
+    <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
+    <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
+    <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
+    </Row>
+    <Row>
+    <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
+    <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
+    <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
+    </Row>
+    <Row>
+    <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
+    <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
+    <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
+    </Row>
+    <Row>
+    <Col span={8}>{<h3>રવિભાઈ રમણભાઈ પ્રજાપતિ(પ્રમુખ)</h3>} </Col>
+    <Col span={8}>{<h3>અરવિંદભાઈ દેસાઈભાઈ પ્રજાપતિ(ખજાનજી)</h3>}</Col>
+    <Col span={8}>{<h3>પરેશભાઈ રમણભાઈ પ્રજાપતિતિ(સંગઠન મંત્રી</h3>}</Col>
+    </Row> */}
+  </div>
+
+<div>
+  <h2>કરજણ ઝોન કારોબારી સભ્ય </h2>
   <Row>
+        {this.state.memberList.filter((item) => item.zone_id == 4).map((item) => {
+          return (
+            <Col span={8}>{<h3>{item.s_name}</h3>} </Col>
+            );
+        })}
+  </Row> 
+  {/* <Row>
   <Col span={8}>{1} </Col>
   <Col span={8}>{2}</Col>
   <Col span={8}>{3}</Col>
@@ -180,10 +235,42 @@ class Home extends React.Component {
   <Col span={8}>{11}</Col>
   <Col span={8}>{12}</Col>
   </Row> */}
+</div>
 
-        </div>
-      </ContainerLayout>
-    );
+<div>
+  <h2>પાદરા ઝોન કારોબારી સભ્ય </h2>
+  <Row>
+        {this.state.memberList.filter((item) => item.zone_id == 5).map((item) => {
+          return (
+            <Col span={8}>{<h3>{item.s_name}</h3>} </Col>
+            );
+        })}
+  </Row> 
+  {/* <Row>
+  <Col span={8}>{1} </Col>
+  <Col span={8}>{2}</Col>
+  <Col span={8}>{3}</Col>
+  </Row>
+  <Row>
+  <Col span={8}>{4}</Col>
+  <Col span={8}>{5}</Col>
+  <Col span={8}>{6}</Col>
+  </Row>
+  <Row>
+  <Col span={8}>{7}</Col>
+  <Col span={8}>{8}</Col>
+  <Col span={8}>{9}</Col>
+  </Row>
+  <Row>
+  <Col span={8}>{10}</Col>
+  <Col span={8}>{11}</Col>
+  <Col span={8}>{12}</Col>
+  </Row> */}
+  </div>
+
+  </div>
+  </ContainerLayout>
+  );
   }
 }
 
