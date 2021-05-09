@@ -76,7 +76,13 @@ class MainMenu extends Component {
         <Menu.Item key="setting:3">
           <Link to="/history">
             <Icon component={ContentUs} />
-            અમારા વિશે
+            અમારા વિશે 
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="setting:8">
+          <Link to="/marriage">
+            <Icon component={ContentUs} />
+            લગ્નવિષયક
           </Link>
         </Menu.Item>
         <Menu.Item key= "setting:5">
